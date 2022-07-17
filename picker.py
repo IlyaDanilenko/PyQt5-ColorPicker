@@ -7,6 +7,7 @@ import math
 import os
 import sys
 
+working_directory = os.path.dirname(os.path.realpath(__file__))  # directory where files are placed in this case same as the executable directory
 
 class defaultColors(QWidget):
     def __init__(self, colorpickerWidget, parent=None):
@@ -504,9 +505,6 @@ class ColorPicker(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    global working_directory
-    working_directory = os.path.dirname(
-        os.path.realpath(__file__))  # directory where files are placed in this case same as the executable directory
     Colorpicker = ColorPicker(width=250, startupcolor=[0, 255, 255])  # HSV (0-360, 0-255, 0-255)
     # check the ColorPicker to change more values
 
