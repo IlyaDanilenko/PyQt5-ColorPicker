@@ -500,12 +500,19 @@ class ColorPicker(QWidget):
         self.hsv_color_array_base_360 = color[2]  # (H(0-360), S(0-100), V(0-100))
         self.hex_color = '%02x%02x%02x' % self.rgb_color_array
         self.change_value.emit(self.rgb_color_array)
+
+    def change_color(self, color):
+        color = [chanel / 255.0 for chanel in color]
+        print(color)
+        color = colorsys.rgb_to_hsv(*color)
+        self.colorpickerWidget.setStartupColor((round(360 * color[0]), round(255 * color[1]), round(255 * color[2])))
         
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    Colorpicker = ColorPicker(width=250, startupcolor=[0, 255, 255])  # HSV (0-360, 0-255, 0-255)
+    colorpicker = ColorPicker(width=250, startupcolor=[0, 255, 255])  # HSV (0-360, 0-255, 0-255)
+    colorpicker.change_color([0, 0, 255])
     # check the ColorPicker to change more values
 
     # You can get the updated values outside the class using an other event like this
